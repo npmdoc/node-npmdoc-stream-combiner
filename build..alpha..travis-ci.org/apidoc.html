@@ -61,12 +61,75 @@
 
     <li class="apidocModuleLi"><a href="#apidoc.module.stream-combiner">module stream-combiner</a><ol>
 
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.stream-combiner.stream-combiner">
+            function <span class="apidocSignatureSpan"></span>stream-combiner
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
     </ol></li>
 
 </ol></div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.stream-combiner" id="apidoc.module.stream-combiner">module stream-combiner</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.stream-combiner.stream-combiner" id="apidoc.element.stream-combiner.stream-combiner">
+        function <span class="apidocSignatureSpan"></span>stream-combiner
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">stream-combiner = function () {
+  var streams
+
+  if(arguments.length == 1 &#x26;&#x26; Array.isArray(arguments[0])) {
+    streams = arguments[0]
+  } else {
+    streams = [].slice.call(arguments)
+  }
+
+  if(streams.length == 0)
+    return through()
+  else if(streams.length == 1)
+    return streams[0]
+
+  var first = streams[0]
+    , last = streams[streams.length - 1]
+    , thepipe = duplexer(first, last)
+
+  //pipe all the streams together
+
+  function recurse (streams) {
+    if(streams.length &#x3c; 2)
+      return
+    streams[0].pipe(streams[1])
+    recurse(streams.slice(1))
+  }
+
+  recurse(streams)
+
+  function onerror () {
+    var args = [].slice.call(arguments)
+    args.unshift(&#x27;error&#x27;)
+    thepipe.emit.apply(thepipe, args)
+  }
+
+  //es.duplex already reemits the error from the first and last stream.
+  //add a listener for the inner streams in the pipeline.
+  for(var i = 1; i &#x3c; streams.length - 1; i ++)
+    streams[i].on(&#x27;error&#x27;, onerror)
+
+  return thepipe
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
 
 </div>
 
