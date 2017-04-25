@@ -1,6 +1,6 @@
 # npmdoc-stream-combiner
 
-#### api documentation for  [stream-combiner (v0.2.2)](https://github.com/dominictarr/stream-combiner)  [![npm package](https://img.shields.io/npm/v/npmdoc-stream-combiner.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-stream-combiner) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-stream-combiner.svg)](https://travis-ci.org/npmdoc/node-npmdoc-stream-combiner)
+#### basic api documentation for  [stream-combiner (v0.2.2)](https://github.com/dominictarr/stream-combiner)  [![npm package](https://img.shields.io/npm/v/npmdoc-stream-combiner.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-stream-combiner) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-stream-combiner.svg)](https://travis-ci.org/npmdoc/node-npmdoc-stream-combiner)
 
 #### [![npm version](https://img.shields.io/npm/v/stream-combiner.svg)](https://npmjs.org/package/stream-combiner)  [![Travis CI](https://travis-ci.org/dominictarr/stream-combiner.svg)](https://travis-ci.org/dominictarr/stream-combiner)
 
@@ -59,7 +59,8 @@
     "scripts": {
         "test": "set -e; for t in test/*.js; do node $t; done"
     },
-    "version": "0.2.2"
+    "version": "0.2.2",
+    "bin": {}
 }
 ```
 
